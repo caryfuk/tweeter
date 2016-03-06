@@ -1,0 +1,9 @@
+{
+  "name": "Tweeter",
+  "version": "0.1.0",
+  "description": "Displays twitter timeline on your Arduino",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Pavel Moravec"
+}
