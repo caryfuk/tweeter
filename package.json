@@ -2,8 +2,17 @@
   "name": "Tweeter",
   "version": "0.1.0",
   "description": "Displays twitter timeline on your Arduino",
+  "author": "Pavel Moravec",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/caryfuk/tweeter.git"
+  },
   "scripts": {
     "start": "node index.js"
   },
-  "author": "Pavel Moravec"
+  "dependencies": {
+    "node-twitter": "^0.5.3",
+    "johnny-five": "^0.9.30"
+  }
 }
