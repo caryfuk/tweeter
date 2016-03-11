@@ -109,10 +109,8 @@ for (var i=0; i < defaultDiacriticsRemovalMap .length; i++){
 }
 
 // "what?" version ... http://jsperf.com/diacritics/12
-function removeDiacritics(str) {
+export function removeDiacritics(str) {
     return str.replace(/[^\u0000-\u007E]/g, function(a){
        return diacriticsMap[a] || a;
     });
 }
-
-module.exports.removeDiacritics = removeDiacritics;
