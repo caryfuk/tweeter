@@ -5,16 +5,19 @@ function toHex(d) {
   return `0${(Number(d).toString(16))}`.slice(-2).toUpperCase();
 }
 
-board.on('ready', () => {
+board.on('ready', function rainbow() {
   const rgb = new five.Led.RGB([6, 5, 3]);
   const frequency = 0.05;
   let index = 0;
-  const red = toHex(Math.round(Math.sin(frequency * index + 0) * 127 + 128));
-  const green = toHex(Math.round(Math.sin(frequency * index + 2) * 127 + 128));
-  const blue = toHex(Math.round(Math.sin(frequency * index + 4) * 127 + 128));
+  function createColorGenerator(shift) {
+    return () => toHex(Math.round(Math.sin(frequency * index + shift) * 127 + 128));
+  }
+  const red = createColorGenerator(0);
+  const green = createColorGenerator(2);
+  const blue = createColorGenerator(4);
 
   this.loop(10, () => {
-    console.log(`${red} ${green} ${blue}`);
+    console.log(`${red()} ${green()} ${blue()}`);
     rgb.color(red + green + blue);
     index++;
   });

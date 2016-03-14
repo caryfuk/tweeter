@@ -16,7 +16,7 @@ const twitterRestClient = new twitter.RestClient(
         config.ACCESS_TOKEN_SECRET
       );
 
-board.on('ready', () => {
+board.on('ready', function tweeter() {
   const arduino = this;
   const lcd = new five.LCD({
     // LCD pin name  RS  EN  DB4 DB5 DB6 DB7
