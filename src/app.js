@@ -16,7 +16,7 @@ const twitterRestClient = new twitter.RestClient(
         config.ACCESS_TOKEN_SECRET
       );
 
-board.on('ready', function() {
+board.on('ready', () => {
   const arduino = this;
   const lcd = new five.LCD({
     // LCD pin name  RS  EN  DB4 DB5 DB6 DB7
@@ -43,10 +43,10 @@ board.on('ready', function() {
         lcd.cursor(1, 0).print(removeDiacritics(result[0].text.substring(16, 32)));
       }
 
-      arduino.repl.inject({ lcdlcd });
+      arduino.repl.inject({ lcd });
     });
   }
 
   displayTweet();
-  const interval = setInterval(displayTweet, 60000);
+  setInterval(displayTweet, 60000);
 });
