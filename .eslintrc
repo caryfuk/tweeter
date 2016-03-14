@@ -1,0 +1,14 @@
+{
+  "env": {
+    "node": true,
+    "es6": true,
+    "browser": false
+  },
+  "ecmaFeatures": {
+    "modules": true
+  },
+  "rules": {
+    "comma-dangle": [2, "never"]
+  },
+  "extends": "airbnb/base"
+}

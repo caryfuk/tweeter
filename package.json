@@ -11,7 +11,8 @@
   "scripts": {
     "build": "babel src --out-dir dist --source-maps",
     "watch": "babel src --out-dir dist --source-maps --watch",
-    "start": "npm run build && node dist/app.js"
+    "start": "npm run build && node dist/app.js",
+    "lint": "node ./node_modules/eslint/bin/eslint src"
   },
   "babel": {
     "presets": [
@@ -21,7 +22,10 @@
   "devDependencies": {
     "babel-cli": "^6.6.5",
     "babel-core": "^6.7.2",
-    "babel-preset-es2015-node5": "^1.1.2"
+    "babel-preset-es2015-node5": "^1.1.2",
+    "eslint": "^2.4.0",
+    "eslint-config-airbnb": "^6.1.0",
+    "eslint-plugin-react": "^4.2.1"
   },
   "dependencies": {
     "babel-polyfill": "^6.7.2",

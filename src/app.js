@@ -7,18 +7,18 @@ import five from 'johnny-five';
 import twitter from 'node-twitter';
 import { removeDiacritics } from './tools';
 
-const config = JSON.parse(fs.readFileSync('./twitter-access.json', 'utf8')),
-      board = new five.Board(),
-      twitterRestClient = new twitter.RestClient(
+const config = JSON.parse(fs.readFileSync('./twitter-access.json', 'utf8'));
+const board = new five.Board();
+const twitterRestClient = new twitter.RestClient(
         config.CONSUMER_KEY,
         config.CONSUMER_SECRET,
         config.ACCESS_TOKEN,
         config.ACCESS_TOKEN_SECRET
       );
 
-board.on("ready", function() {
-  let arduino = this;
-  let lcd = new five.LCD({
+board.on('ready', function() {
+  const arduino = this;
+  const lcd = new five.LCD({
     // LCD pin name  RS  EN  DB4 DB5 DB6 DB7
     // Arduino pin # 7    8   9   10  11  12
     pins: [7, 8, 9, 10, 11, 12],
@@ -32,10 +32,10 @@ board.on("ready", function() {
   });
 
   function displayTweet() {
-    twitterRestClient.statusesHomeTimeline({count: 1}, function(error, result) {
+    twitterRestClient.statusesHomeTimeline({ count: 1 }, (error, result) => {
       if (error) {
         lcd.clear().cursor(0, 0).print('Error:');
-        lcd.cursor(1, 0).print(error.code ? error.code + ' ' + error.message : error.message);
+        lcd.cursor(1, 0).print(error.code ? `${error.code} ${error.message}` : error.message);
       }
 
       if (result) {
@@ -43,12 +43,10 @@ board.on("ready", function() {
         lcd.cursor(1, 0).print(removeDiacritics(result[0].text.substring(16, 32)));
       }
 
-      arduino.repl.inject({
-        lcd: lcd
-      });
+      arduino.repl.inject({ lcdlcd });
     });
   }
 
   displayTweet();
-  let interval = setInterval(displayTweet, 60000);
+  const interval = setInterval(displayTweet, 60000);
 });
